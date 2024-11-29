@@ -14,6 +14,8 @@ import { formSchema } from "@/lib/zod-schema";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.action";
 
+
+
 export enum FormFieldType  {
   INPUT = 'input',
   TEXTAREA = 'textarea',
@@ -22,8 +24,8 @@ export enum FormFieldType  {
   DATE_PICKER = 'datePicker',
   SELECT = 'select',
   SKELETON = 'skeleton'
-
 }
+
 
 
 const PatientForm = () => {

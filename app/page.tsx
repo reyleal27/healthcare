@@ -1,5 +1,6 @@
 'use client'
 import PatientForm from "@/components/form/PatientForm";
+import Logo from "@/components/Logo";
 import { ThemeToggle } from "@/components/Theme";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -10,7 +11,7 @@ export default function Home() {
         <div className="flex h-screen max-h-screen">
             <section className="remove-scrollbar container my-auto ">
                 <div className="sub-container max-w-[496px]">
-                    <div className="flex items-center gap-2 mb-6">
+                    {/* <div className="flex items-center gap-2 mb-6">
                         <Image
                             src="/assets/health-logo.jpg"
                             width={1000}
@@ -21,7 +22,8 @@ export default function Home() {
                         <h2 className="text-primary text-2xl font-bold">
                             U<span className="text-red-500">First</span>
                         </h2>
-                    </div>
+                    </div> */}
+                    <Logo/>
                     <PatientForm />
                     <div className="text-14-regular mt-20 flex justify-between">
                         <p className="justify-items-end text-dark-600 xl:text-xl">
