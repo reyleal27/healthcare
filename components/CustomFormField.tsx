@@ -18,7 +18,7 @@ import { Checkbox } from "./ui/checkbox";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import PhoneInput from "react-phone-number-input";
 import { E164Number } from "libphonenumber-js/core";
-import DatePicker from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 interface CustomProps {
@@ -123,21 +123,20 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
         <div className="flex rounded-md border border-dark-500 bg-dark-400">
           <Image
             src="/assets/icons/calendar.svg"
-            alt="calendar"
             height={24}
             width={24}
+            alt="user"
             className="ml-2"
           />
           <FormControl>
-            <DatePicker
+            <ReactDatePicker
+              showTimeSelect={props.showTimeSelect ?? false}
               selected={field.value}
-              showDateSelect={showTimeSelect ?? false}
-              dateFormat={dateFormat ?? 'MM/dd/yyyy'}
               onChange={(date) => field.onChange(date)}
-              timeInputLabel="Time"
+              timeInputLabel="Time:"
+              dateFormat={props.dateFormat ?? "MM/dd/yyyy"}
               wrapperClassName="date-picker"
-              minDate={new Date()}
-            ></DatePicker>
+            />
           </FormControl>
         </div>
       );
@@ -160,7 +159,7 @@ const CustomFormField = (props: CustomProps) => {
             <FormLabel>{label}</FormLabel>
           )}
           <RenderField field={field} props={props} />
-          <FormMessage className="text-destructive" />
+          <FormMessage className="text-red-500" />
         </FormItem>
       )}
     />
