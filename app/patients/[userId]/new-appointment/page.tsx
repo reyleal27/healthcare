@@ -5,7 +5,8 @@ import Image from "next/image";
 
 
 
-export default async function Appointment({ params }: SearchParamProps) {
+export default async function Appointment(props: SearchParamProps) {
+  const params = await props.params;
   const { userId } = params;
 
   if (!userId) {
@@ -13,18 +14,16 @@ export default async function Appointment({ params }: SearchParamProps) {
     <div>User Id not</div>
   )
 }
-  
-    
   const patient = await getPatient(userId);
 
-    if (!patient) { return (<div>Error: Patient Information is missing</div>); }
-    
+  if (!patient) { return (<div>Error: Patient Information is missing</div>); }
+
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[860px] py-10">
           <Logo />
-          <AppointmentForm userId={ userId} type="schedule" patientId={patient.$id} />
+          <AppointmentForm userId={ userId} type="cancel" patientId={patient.$id} />
           <p className="copyright py-12">© 2024 UFirst </p>
         </div>
       </section>

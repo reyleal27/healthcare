@@ -11,18 +11,6 @@ export default function Home() {
         <div className="flex h-screen max-h-screen">
             <section className="remove-scrollbar container my-auto ">
                 <div className="sub-container max-w-[496px]">
-                    {/* <div className="flex items-center gap-2 mb-6">
-                        <Image
-                            src="/assets/health-logo.jpg"
-                            width={1000}
-                            height={1000}
-                            alt="logo"
-                            className="h-10 w-fit rounded-full"
-                        />
-                        <h2 className="text-primary text-2xl font-bold">
-                            U<span className="text-red-500">First</span>
-                        </h2>
-                    </div> */}
                     <Logo/>
                     <PatientForm />
                     <div className="text-14-regular mt-20 flex justify-between">
