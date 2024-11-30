@@ -1,8 +1,6 @@
 'use client'
 import PatientForm from "@/components/form/PatientForm";
 import Logo from "@/components/Logo";
-import { ThemeToggle } from "@/components/Theme";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 

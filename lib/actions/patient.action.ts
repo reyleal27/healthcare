@@ -25,7 +25,7 @@ export const createUser = async (user: any) => {
       // User's name (optional)
     );
     console.log("User created successfully:", newUser);
-    return newUser;
+    return parseStringify(newUser);
   } catch (error: any) {
     console.error("Error during user creation:", error);
 
@@ -109,7 +109,7 @@ export const getPatient = async (userId: string) => {
       [Query.equal("userId", [userId])]
     );
 
-    return (patients.documents[0]);
+    return parseStringify(patients.documents[0]);
   } catch (error) {
     console.error(
       "An error occurred while retrieving the patient details:",

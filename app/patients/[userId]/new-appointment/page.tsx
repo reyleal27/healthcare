@@ -5,8 +5,8 @@ import Image from "next/image";
 
 
 
-export default async function Appointment(props: SearchParamProps) {
-  const params = await props.params;
+export default async function Appointment({ params }: SearchParamProps) {
+
   const { userId } = params;
 
   if (!userId) {
