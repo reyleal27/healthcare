@@ -3,27 +3,16 @@ import Logo from "@/components/Logo";
 import { getPatient } from "@/lib/actions/patient.action";
 import Image from "next/image";
 
-
-
-export default async function Appointment({ params }: SearchParamProps) {
-
-  const { userId } = params;
-
-  if (!userId) {
-    return (
-    <div>User Id not</div>
-  )
-}
+const Appointment = async ({ params }: SearchParamsProps) => {
+  const { userId } = await params;
   const patient = await getPatient(userId);
-
-  if (!patient) { return (<div>Error: Patient Information is missing</div>); }
 
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[860px] py-10">
           <Logo />
-          <AppointmentForm userId={ userId} type="cancel" patientId={patient.$id} />
+          <AppointmentForm userId={ userId} type="create" patientId={patient.$id} />
           <p className="copyright py-12">© 2024 UFirst </p>
         </div>
       </section>
@@ -38,3 +27,5 @@ export default async function Appointment({ params }: SearchParamProps) {
     </div>
   );
 };
+
+export default Appointment;

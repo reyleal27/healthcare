@@ -45,7 +45,6 @@ const AppointmentForm = ({
   ) => {
     setIsLoading(true);
 
-      console.log('form data', values)
     let status;
     switch (type) {
       case "schedule":
@@ -73,9 +72,9 @@ const AppointmentForm = ({
         const appointment = await createAppointment(appointmentData);
 
         if (appointment) {
-          form.reset();
+            form.reset();
           router.push(
-            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.id}`
+            `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
           );
         }
       }

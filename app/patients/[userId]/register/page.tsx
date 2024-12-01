@@ -5,14 +5,12 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 
-const Register = async (props: SearchParamProps) => {
-  const params = await props.params;
-  const { userId } = params;
+const Register = async ({params}: SearchParamsProps) => {
+  const {userId} = await params;
   if (!userId) { return (<div>Error: User ID is missing</div>); }
 
   const user = await getUser(userId);
   const patient = await getPatient(userId);
-
   if (patient) redirect(`/patients/${userId}/new-appointment`);
 
   return (

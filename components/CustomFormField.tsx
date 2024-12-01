@@ -35,7 +35,7 @@ interface CustomProps {
 }
 
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
-  const { fieldType, iconSrc, iconAlt, placeholder,showTimeSelect,dateFormat } = props;
+  const { fieldType, placeholder } = props;
   switch (fieldType) {
     case FormFieldType.INPUT:
       return (

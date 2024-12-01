@@ -11,21 +11,22 @@ import {
   storage,
   databases,
 } from "../appwrite.config";
-import { parseStringify } from "../utils";
+// import { parseStringify } from "../utils";
 import { InputFile } from "node-appwrite/file";
 
 export const createUser = async (user: any) => {
   try {
     const newUser = await users.create(
-      ID.unique(), // Unique user ID
-      user.email, // User's email address
+      ID.unique(),
+      user.email,
       user.phone,
-      undefined, // User's password (required)
-      user.name // User's phone number (optional)
-      // User's name (optional)
+      undefined,
+      user.name,
     );
     console.log("User created successfully:", newUser);
-    return parseStringify(newUser);
+    const parseNewUser = JSON.parse(JSON.stringify(newUser));
+
+    return parseNewUser;
   } catch (error: any) {
     console.error("Error during user creation:", error);
 
@@ -56,7 +57,9 @@ export const createUser = async (user: any) => {
 export const getUser = async (userId: string) => {
   try {
     const user = await users.get(userId);
-    return parseStringify(user);
+    const parseUser = JSON.parse(JSON.stringify(user));
+
+    return parseUser;
   } catch (error) {
     console.log(error);
   }
@@ -108,8 +111,12 @@ export const getPatient = async (userId: string) => {
       PATIENT_COLLECTION_ID!,
       [Query.equal("userId", [userId])]
     );
-
-    return parseStringify(patients.documents[0]);
+    if (patients.documents && patients.documents.length > 0) {
+      const parsePatients = JSON.parse(JSON.stringify(patients.documents[0]));
+      return parsePatients;
+    } else {
+      console.error('No patient documents found or patients.documents is undefined');
+    }
   } catch (error) {
     console.error(
       "An error occurred while retrieving the patient details:",
