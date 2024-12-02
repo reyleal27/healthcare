@@ -1,7 +1,6 @@
 import PatientForm from "@/components/form/PatientForm";
 import Logo from "@/components/Logo";
 import PasskeyModal from "@/components/PasskeyModal";
-import { ThemeToggle } from "@/components/Theme";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -34,9 +33,7 @@ const Home = async ({ searchParams }: SearchParamsProps) => {
                 width={1000}
                 className="side-img max-w-[50%]"
             />
-            <div className="absolute top-2 left-2">
-                <ThemeToggle/>
-            </div>
+          
         </div>
     );
 };

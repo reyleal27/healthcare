@@ -39,7 +39,7 @@ const PasskeyModal = () => {
                 setError('Invalid passkey.Please try again')
             }
         }
-    },[encryptedKey])
+    },[encryptedKey,path,router])
 
     const validatePasskey = (e:React.MouseEvent<HTMLButtonElement,MouseEvent>) => {
         e.preventDefault();

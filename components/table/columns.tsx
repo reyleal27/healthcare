@@ -1,11 +1,6 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react"
-import { ArrowUpDown } from "lucide-react"
- 
-import { Button } from "@/components/ui/button"
-
 import StatusBadge from "../StatusBadge";
 import { formatDateTime } from "@/lib/utils";
 import { Doctors } from "@/constants";
@@ -69,16 +64,12 @@ export const columns: ColumnDef<Appointment>[] = [
                   patientId={data.patient.$id}
                   userId={data.userId}
                   appointment={data}
-                  //   title="Schedule Appointment"
-                  //   description="Please confirm the following details to scheduled"
                   />
               
               <AppointmentModal type="cancel"
                   patientId={data.patient.$id}
                   userId={data.userId}
                   appointment={data}
-                  //   title="Cancel Appointment"
-                  //   description="Are you sure you want to cancel this appointment?"
                   />
         </div>
       )
