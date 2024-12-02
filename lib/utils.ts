@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
+import { GetServerSideProps } from "next";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -75,3 +76,9 @@ export function encryptKey(passkey: string) {
 export function decryptKey(passkey: string) {
   return atob(passkey);
 }
+
+
+export const getServerSideProps: GetServerSideProps<AppointmentPageProps> = async (context) => {
+  const { query } = context; const appointmentId = query.appointmentId as string; const isAdmin = query.admin === 'true';
+  return { props: { appointmentId, isAdmin, }, }
+} ;
