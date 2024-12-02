@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import { ID, Query } from "node-appwrite";
-
 import { Appointment } from "@/types/appwrite.types";
 
 import {
@@ -61,35 +60,6 @@ export const getRecentAppointmentList = async () => {
       documents: appointments.documents,
     };
 
-    const initialCounts = {
-      scheduledCount: 0,
-      pendingCount: 0,
-      cancelledCount: 0,
-    };
-
-    const counts = (appointments.documents as Appointment[]).reduce(
-      (acc, appointment) => {
-        switch (appointment.status) {
-          case "scheduled":
-            acc.scheduledCount++;
-            break;
-          case "pending":
-            acc.pendingCount++;
-            break;
-          case "cancelled":
-            acc.cancelledCount++;
-            break;
-        }
-        return acc;
-      },
-      initialCounts
-    );
-
-    // const data = {
-    //   totalCount: appointments.total,
-    //   ...counts,
-    //   documents: appointments.documents,
-    // };
 
     return parseStringify(data);
   } catch (error) {
@@ -103,7 +73,6 @@ export const getRecentAppointmentList = async () => {
 //  SEND SMS NOTIFICATION
 export const sendSMSNotification = async (userId: string, content: string) => {
   try {
-    // https://appwrite.io/docs/references/1.5.x/server-nodejs/messaging#createSms
     const message = await messaging.createSms(
       ID.unique(),
       content,
@@ -135,8 +104,9 @@ export const updateAppointment = async ({
 
     if (!updatedAppointment) throw new Error('Appointment not found');
 
-    // const smsMessage = `Greetings from CarePulse. ${type === "schedule" ? `Your appointment is confirmed for ${formatDateTime(appointment.schedule!).dateTime} with Dr. ${appointment.primaryPhysician}` : `We regret to inform that your appointment for ${formatDateTime(appointment.schedule!).dateTime} is cancelled. Reason:  ${appointment.cancellationReason}`}.`;
-    // await sendSMSNotification(userId, smsMessage);
+    const smsMessage = `Good day from UFirst. ${type === "schedule" ? `Your appointment has been scheduled in ${formatDateTime(appointment.schedule!).dateTime} with Dr. ${appointment.primaryPhysician}. Please arrive early` : `We regret to inform that your appointment for ${formatDateTime(appointment.schedule!).dateTime} is cancelled. Reason: ${appointment.cancellationReason}`}.`;
+    
+    await sendSMSNotification(userId, smsMessage);
 
     revalidatePath("/admin");
     return parseStringify(updatedAppointment);

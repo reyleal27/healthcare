@@ -56,5 +56,3 @@ declare type UpdateAppointmentParams = {
   appointment: Appointment;
   type: string;
 };
-
-

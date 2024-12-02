@@ -76,9 +76,3 @@ export function encryptKey(passkey: string) {
 export function decryptKey(passkey: string) {
   return atob(passkey);
 }
-
-
-export const getServerSideProps: GetServerSideProps<AppointmentPageProps> = async (context) => {
-  const { query } = context; const appointmentId = query.appointmentId as string; const isAdmin = query.admin === 'true';
-  return { props: { appointmentId, isAdmin, }, }
-} ;

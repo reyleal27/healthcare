@@ -13,7 +13,7 @@ const Admin = async() => {
   return (
     <div className='mx-auto flex max-w-7xl flex-col space-y-14'>
       <header className='admin-header'>
-        <Link href='/admin' className="cursor-pointer">
+        <Link href='/' className="cursor-pointer">
           <Logo/>
         </Link>
         <p className='text-16-semibold'>

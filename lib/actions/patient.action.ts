@@ -23,7 +23,6 @@ export const createUser = async (user: any) => {
       undefined,
       user.name,
     );
-    console.log("User created successfully:", newUser);
     const parseNewUser = JSON.parse(JSON.stringify(newUser));
 
     return parseNewUser;
@@ -78,11 +77,7 @@ export const getUser = async (userId: string) => {
         );
         file = await storage.createFile(BUCKET_ID!, ID.unique(), inputFile);
         }
-        console.log({
-            identificationDocumentId: file?.$id || null,
-            identificationDocumentUrl: `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files${file?.$id}/view?project=${PROJECT_ID}`,
-            ...patient,
-        })
+        
         const newPatient = await databases.createDocument(
         DATABASE_ID!,
         PATIENT_COLLECTION_ID!,
