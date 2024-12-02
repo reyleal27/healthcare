@@ -63,7 +63,7 @@ const RequestSuccess = async ({ searchParams,params }: SearchParamsProps) => {
           </div>
         </section>
 
-              <div className="flex flex-col xl:flex-row">
+              <div className="flex flex-col gap-4 xl:flex-row">
                   
         <Button variant="outline" className="shad-primary-btn" asChild>
           <Link href={`/patients/${userId}/new-appointment`}>

@@ -115,7 +115,7 @@ export const getPatient = async (userId: string) => {
       const parsePatients = JSON.parse(JSON.stringify(patients.documents[0]));
       return parsePatients;
     } else {
-      console.error('No patient documents found or patients.documents is undefined');
+      return null
     }
   } catch (error) {
     console.error(
