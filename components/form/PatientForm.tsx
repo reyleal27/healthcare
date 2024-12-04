@@ -15,6 +15,7 @@ import { createUser } from "@/lib/actions/patient.action";
 
 
 
+
 export enum FormFieldType  {
   INPUT = 'input',
   TEXTAREA = 'textarea',
@@ -29,7 +30,10 @@ export enum FormFieldType  {
 
 const PatientForm = () => {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+ 
+
 
   const form = useForm<z.infer<typeof UserFormValidation>>({
     resolver: zodResolver(UserFormValidation),
@@ -54,11 +58,12 @@ const PatientForm = () => {
       if (newUser) {
         router.push(`/patients/${newUser.$id}/register`);
       }
-    } catch (error) {
+    } catch (error:any) {
       console.log(error);
+      setErrorMessage(error.message || '');
     }
-
     setIsLoading(false);
+
   };
 
   return (
@@ -95,7 +100,8 @@ const PatientForm = () => {
           label="Phone number"
           placeholder="(+63) 9922231252"
         />
-        <SubmitButton isLoading={isLoading }>Get Started</SubmitButton>
+        {errorMessage && <p className="text-red-500">{errorMessage ? errorMessage : ""}</p>}
+        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
     </Form>
   )

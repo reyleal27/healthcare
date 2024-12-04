@@ -1,8 +1,10 @@
+import Loading from "@/app/loading";
 import RegisterForm from "@/components/form/RegisterForm";
 import Logo from "@/components/Logo";
 import { getPatient, getUser } from "@/lib/actions/patient.action";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 
 const Register = async ({ params }: SearchParamsProps) => {
@@ -15,6 +17,7 @@ const Register = async ({ params }: SearchParamsProps) => {
   } 
 
   return (
+    <Suspense key={userId} fallback={<Loading/>}>
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container">
         <div className="sub-container max-w-[860px] flex-1 flex-col py-10">
@@ -31,7 +34,8 @@ const Register = async ({ params }: SearchParamsProps) => {
         className="side-img max-w-[30%]"
       />
       <div className="absolute top-2 left-2"></div>
-    </div>
+      </div>
+      </Suspense>
   );
 };
 

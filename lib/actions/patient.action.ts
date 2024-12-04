@@ -31,24 +31,25 @@ export const createUser = async (user: CreateUserParams) => {
     if (error && error.code === 409) {
       // Handle "user already exists" error
       console.log("User already exists. Fetching existing user...");
-
-      try {
-        const existingUserList = await users.list([
-          Query.equal("email", user.email),
-        ]);
-
-        if (existingUserList.total > 0) {
-          const existingUser = existingUserList.users[0];
-          console.log("Existing user found:", existingUser);
-          return existingUser;
-        }
-      } catch (fetchError) {
-        console.error("Error fetching existing user:", fetchError);
-        throw fetchError;
-      }
+      throw new Error("user already exists")
     }
+    try {
+      const existingUserList = await users.list([
+        Query.equal("email", user.email),
+        Query.equal("phone", user.phone),
+        
+      ]);
 
-    throw error;
+      if (existingUserList.total > 0) {
+        // const existingUser = existingUserList.users[0];
+        // console.log("Existing user found:", existingUser);
+        throw new Error("Existing user found",);
+        // return existingUser;
+      }
+    } catch (fetchError) {
+      console.error("Error fetching existing user:", fetchError);
+      throw fetchError;
+    }
   }
 };
 

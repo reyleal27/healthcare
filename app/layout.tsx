@@ -4,7 +4,6 @@ import { Plus_Jakarta_Sans as FontSans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/Theme";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -29,19 +28,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <main className={cn(
-          "min-h-screen font-sans antialiased",
-          fontSans.variable
-        )}>
-
-      <ThemeProvider attribute="class" defaultTheme="dark">
-        
-      
+        <main
+          className={cn(
+            "min-h-screen font-sans antialiased",
+            fontSans.variable
+          )}
+        >
+          <ThemeProvider attribute="class" defaultTheme="dark">
             {children}
-              <div className="absolute top-2 left-2">
-                <ThemeToggle/>
-            </div>
-        </ThemeProvider>
+          </ThemeProvider>
         </main>
       </body>
     </html>

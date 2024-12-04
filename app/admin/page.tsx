@@ -16,9 +16,13 @@ const Admin = async() => {
         <Link href='/' className="cursor-pointer">
           <Logo/>
         </Link>
+        <div className='flex gap-4'>
+          <Link href='/' className='text-16-semibold text-green-500 hover:text-green-700'>Home</Link>
         <p className='text-16-semibold'>
           Admin dashboard
-          </p>
+        </p>
+        
+        </div>
       </header>
       <main className='admin-main'>
         <section className='w-full space-y-4'>

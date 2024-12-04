@@ -26,6 +26,7 @@ import { registerPatient } from "@/lib/actions/patient.action";
 import CustomFormField from "../CustomFormField";
 import { FormFieldType } from "./PatientForm";
 import FileUploader from "../FileUploader";
+import Loader from "../Loader";
 
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
@@ -376,7 +377,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             privacy policy"
           />
         </section>
-
+            {isLoading && <Loader/>}
         <SubmitButton isLoading={isLoading}>Submit and Continue</SubmitButton>
       </form>
     </Form>

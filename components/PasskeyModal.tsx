@@ -18,23 +18,26 @@ import { decryptKey, encryptKey } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Loader from "./Loader";
 
 const PasskeyModal = () => {
     const router = useRouter();
     const path = usePathname();
     const [open, setOpen] = useState(true);
     const [passkey, setPasskey] = useState('');
-    const [error, setError] = useState('')
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false);
     
     const encryptedKey = typeof window !== 'undefined' ? window.localStorage.getItem('accessKey') : null;
 
     useEffect(() => {
         const accessKey = encryptedKey && decryptKey(encryptedKey);
-        
+        setIsLoading(true)
         if (path) {
             if (accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
                 setOpen(false);
-                router.push('/admin');
+                setIsLoading(false)
+              router.push('/admin');
             } else {
                 setError('Invalid passkey.Please try again')
             }
